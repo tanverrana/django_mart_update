@@ -9,3 +9,7 @@ def register(request):
 
 def profile(request):
     return render(request, 'accounts/dashboard.html')
+
+
+def user_login(request):
+    return render(request, 'accounts/signin.html')
