@@ -23,5 +23,5 @@ urlpatterns = [
     # path('store/', include('store.urls')),
     # path('orders/', include('orders.urls')),
     # path('category/', include('category.urls')),
-    # path('cart/', include('cart.urls')),
+    path('cart/', include('cart.urls')),
 ]
