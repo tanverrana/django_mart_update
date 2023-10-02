@@ -22,5 +22,7 @@ def store(request, category_slug=None):
     return render(request, 'store/store.html', context)
 
 
-def product_detail(request):
-    return render(request, 'store/product-detail.html')
+def product_detail(request, category_slug, product_slug):
+    single_product = Product.objects.get(
+        slug=product_slug, category__slug=category_slug)
+    return render(request, 'store/product-detail.html', {'product': single_product})
