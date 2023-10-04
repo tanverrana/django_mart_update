@@ -9,10 +9,19 @@ def cart(request):
     cartid = Cart.objects.get(cart_id=session_id)
     cart_id = Cart.objects.filter(cart_id=session_id).exists()
     cart_items = None
+    tax = 0
+    total = 0
+    grand_total = 0
+
     if cart_id:
         cart_items = CartItem.objects.filter(cart=cartid)
-        print(cart_items)
-    return render(request, 'cart/cart.html', {'cart_items': cart_items})
+        for item in cart_items:
+            total += item.product.price*item.quantity
+
+    tax = (2*total)/100
+    grand_total = total+tax
+
+    return render(request, 'cart/cart.html', {'cart_items': cart_items, 'tax': tax, 'total': total, 'grand_total': grand_total})
 
 
 def add_to_cart(request, product_id):
