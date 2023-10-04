@@ -43,9 +43,13 @@
                       </div>
                       <input type="text" class="form-control" value={{item.quantity}} />
                       <div class="input-group-append">
-                        <button class="btn btn-light" type="button" id="button-minus">
-                          <i class="fa fa-plus"></i>
-                        </button>
+                        <form action="{% url 'add_cart' item.product.id %}">
+                          {%csrf_token%}
+                          <button class="btn btn-light" type="submit" id="button-minus">
+                            <i class="fa fa-plus"></i>
+                          </button>
+                        </form>
+
                       </div>
                     </div>
                     <!-- input-group.// -->
