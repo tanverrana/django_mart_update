@@ -38,7 +38,7 @@
                     <div class="input-group input-spinner">
                       <div class="input-group-prepend">
 
-                        <form action="{% url 'remove_cart' item.product.id%}">
+                        <form action="{% url 'remove_cart_item' item.product.id%}">
                           {%csrf_token%}
                           <button class="btn btn-light" type="submit" id="button-minus">
                             <i class="fa fa-minus"></i>
@@ -68,7 +68,7 @@
                   <!-- price-wrap .// -->
                 </td>
                 <td class="text-right">
-                  <a href="" class="btn btn-danger"> Remove</a>
+                  <a href="{% url 'remove_cart' item.product.id%}" class="btn btn-danger"> Remove</a>
                 </td>
               </tr>
               {%endfor%}

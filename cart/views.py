@@ -43,7 +43,7 @@ def add_to_cart(request, product_id):
     return redirect('cart')
 
 
-def remove_cart(request, product_id):
+def remove_cart_item(request, product_id):
     product = Product.objects.get(id=product_id)
     session_id = request.session.session_key
     cartid = Cart.objects.get(cart_id=session_id)
@@ -53,4 +53,13 @@ def remove_cart(request, product_id):
         cart_item.save()
     else:
         cart_item.delete()
+    return redirect('cart')
+
+
+def remove_cart(request, product_id):
+    product = Product.objects.get(id=product_id)
+    session_id = request.session.session_key
+    cartid = Cart.objects.get(cart_id=session_id)
+    cart_item = CartItem.objects.get(cart=cartid, product=product)
+    cart_item.delete()
     return redirect('cart')
